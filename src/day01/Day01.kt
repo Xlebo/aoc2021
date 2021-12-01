@@ -1,6 +1,6 @@
 package day01
 
-import fetchInputDataAsNumbers
+import getOrFetchInputDataAsNumbers
 import readInputNumbers
 
 fun main() {
@@ -50,7 +50,7 @@ fun main() {
     check(result1 == 7) { "Got: $result1" }
     check(result2 == 4) { "Got: $result2" }
 
-    val input = fetchInputDataAsNumbers(1)
+    val input = getOrFetchInputDataAsNumbers(1)
     println(part1(input))
     println(part2(input))
 }
