@@ -16,6 +16,11 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
     Every year since then, beginning on the first day of December, a programming puzzle is published every day for twenty-four days.
     You can solve the puzzle and provide an answer using the language of your choice.
 
+#Features:
+* Added fetching of input data from the API in the Utils.kt file.
+To make this work, set a VM variable "cookie" so it contains your session cookie
+(according to the site, it should last about a month).
+
 [aoc]: https://adventofcode.com
 [docs]: https://kotlinlang.org/docs/home.html
 [github]: https://github.com/xlebo
