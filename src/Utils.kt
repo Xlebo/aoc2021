@@ -47,3 +47,5 @@ fun getOrFetchInputData(day: Int = 1): List<String> {
 fun getOrFetchInputDataAsNumbers(day: Int = 1): List<Int> = getOrFetchInputData(day)
     .filter { x -> x.isNotEmpty() }
     .map { x -> x.toInt() }
+
+fun getOrFetchInputDataIntArray(day: Int = 1): List<Int> = getOrFetchInputData(day)[0].split(',').map { it.toInt() }
