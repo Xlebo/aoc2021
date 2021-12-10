@@ -2,7 +2,6 @@ package day10
 
 import getOrFetchInputData
 import readInput
-import java.util.*
 
 fun main() {
 
@@ -15,11 +14,11 @@ fun main() {
     fun part1(input: List<String>): Int {
         var score = 0
         for (line in input) {
-            val stack = Stack<Char>()
+            val stack = ArrayDeque<Char>()
             for (letter in line) {
                 when (letter) {
-                    in opening -> stack.push(bracketMapping[letter])
-                    stack.peek() -> stack.pop()
+                    in opening -> stack.addFirst(bracketMapping[letter]!!)
+                    stack.first() -> stack.removeFirst()
                     else -> {
                         score += scoreMapping1[letter]!!
                         break
@@ -33,21 +32,21 @@ fun main() {
     fun part2(input: List<String>): Long {
         val scores = mutableListOf<Long>()
         for (line in input) {
-            val stack = Stack<Char>()
+            val stack = ArrayDeque<Char>()
             for (letter in line) {
                 when (letter) {
-                    in opening -> stack.push(bracketMapping[letter])
-                    stack.peek() -> stack.pop()
+                    in opening -> stack.addFirst(bracketMapping[letter]!!)
+                    stack.first() -> stack.removeFirst()
                     else -> {
                         stack.clear()
                         break
                     }
                 }
             }
-            if (stack.empty()) continue
+            if (stack.isEmpty()) continue
             var score = 0L
             while (stack.isNotEmpty()) {
-                val letter = stack.pop()
+                val letter = stack.removeFirst()
                 score *= 5
                 score += scoreMapping2[letter]!!
             }
