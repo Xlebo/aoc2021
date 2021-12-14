@@ -1,22 +1,14 @@
 import java.io.File
-import java.math.BigInteger
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
-import java.security.MessageDigest
 
-/**
- * Reads lines from the given input txt file.
- */
+fun readInputAsString(name: String, parent: String = name) = File("src\\$parent", "$name.txt").readText()
+
 fun readInput(name: String, parent: String = name) = File("src\\$parent", "$name.txt").readLines()
 
 fun readInputNumbers(name: String, parent: String = name): List<Int> = readInput(name, parent).map { x -> x.toInt() }
-
-/**
- * Converts string to md5 hash.
- */
-fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16)
 
 fun fetchInputData(day: Int = 1): String {
     val cookie = System.getProperty("cookie")
@@ -30,6 +22,18 @@ fun fetchInputData(day: Int = 1): String {
         .build()
     val response = client.send(request, HttpResponse.BodyHandlers.ofString())
     return response.body()
+}
+
+fun getOrFetchInputDataAsString(day: Int = 1): String {
+    val parent = "day${day.toString().padStart(2, '0')}"
+    val f = File("src\\$parent", "$parent.txt")
+
+    if (!f.exists()) {
+        f.createNewFile()
+        f.writeBytes(fetchInputData(day).toByteArray())
+    }
+
+    return f.readText()
 }
 
 fun getOrFetchInputData(day: Int = 1): List<String> {
