@@ -4,3 +4,4 @@ build
 src/**/*.txt
 
 !src/**/*_test[0-9]*.txt
+!src/**/*_test.txt
